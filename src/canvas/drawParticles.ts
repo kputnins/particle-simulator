@@ -13,12 +13,26 @@ export const drawParticles = ({
 
   particles.forEach((particle) => {
     brush.fillStyle = particle.color;
-    brush.fillRect(
+    brush.beginPath();
+    brush.arc(
       particle.position.x,
       particle.position.y,
-      particle.size,
-      particle.size,
+      particle.radius,
+      0,
+      2 * Math.PI,
+      true,
     );
+    // brush.stroke();
+
+    brush.closePath();
+    brush.fill();
+
+    // brush.fillRect(
+    //   particle.position.x,
+    //   particle.position.y,
+    //   particle.diameter,
+    //   particle.diameter,
+    // );
   });
   brush.restore();
 };

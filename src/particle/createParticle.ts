@@ -1,4 +1,5 @@
 import { generateRandomInteger } from '../math';
+import { generateRandomColor } from '../utils';
 import { Particle } from './particle';
 
 interface CreateParticleParams {
@@ -6,6 +7,8 @@ interface CreateParticleParams {
   maxY: number;
   maxVelocityX: number;
   maxVelocityY: number;
+  minDiameter: number;
+  maxDiameter: number;
 }
 
 export const createParticle = ({
@@ -13,15 +16,27 @@ export const createParticle = ({
   maxY,
   maxVelocityX,
   maxVelocityY,
-}: CreateParticleParams): Particle => ({
-  position: {
-    x: generateRandomInteger({ min: 0, max: maxX }),
-    y: generateRandomInteger({ min: 0, max: maxY }),
-  },
-  color: 'white',
-  velocity: {
-    x: generateRandomInteger({ min: -maxVelocityX, max: maxVelocityX }),
-    y: generateRandomInteger({ min: -maxVelocityY, max: maxVelocityY }),
-  },
-  size: 1,
-});
+  minDiameter,
+  maxDiameter,
+}: CreateParticleParams): Particle => {
+  const diameter = generateRandomInteger({
+    min: minDiameter,
+    max: maxDiameter,
+  });
+  const radius = diameter / 2;
+
+  return {
+    position: {
+      x: generateRandomInteger({ min: minDiameter, max: maxX - maxDiameter }),
+      y: generateRandomInteger({ min: minDiameter, max: maxY - maxDiameter }),
+    },
+    color: generateRandomColor(),
+    velocity: {
+      x: generateRandomInteger({ min: -maxVelocityX, max: maxVelocityX }),
+      y: generateRandomInteger({ min: -maxVelocityY, max: maxVelocityY }),
+    },
+    radius,
+    diameter,
+    area: Math.PI * radius * radius,
+  };
+};

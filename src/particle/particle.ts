@@ -1,8 +1,10 @@
-import { Vector2D } from '../math';
+import type { Vector2D } from '../math';
 
 export interface Particle {
-  size: number;
+  radius: number;
+  diameter: number;
+  area: number;
   position: Vector2D;
-  color: string;
   velocity: Vector2D;
+  color: string;
 }

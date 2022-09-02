@@ -1,6 +1,7 @@
 import { collideWithWalls } from './collideWithWalls';
 import { updateParticlePosition } from './updateParticlePosition';
 import type { Particle } from './particle';
+import { collideWithParticles } from './collideWithParticles';
 
 interface UpdateParticlesParams {
   particles: Particle[];
@@ -13,8 +14,13 @@ export const updateParticles = ({
   width,
   height,
 }: UpdateParticlesParams): void => {
-  particles.forEach((particle) => {
+  particles.forEach((particle, index) => {
     collideWithWalls({ particle, width, height });
+    collideWithParticles({
+      particles,
+      particleOne: particle,
+      startIndex: index,
+    });
     updateParticlePosition({ particle });
   });
 };
