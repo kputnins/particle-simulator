@@ -1,6 +1,10 @@
 # Web Particle Simulator
 
-A simple particle simulator rendered in HTML canvas
+A simple 2d particle simulator rendered in HTML canvas
+
+## [Live Demo](https://kp-particle-simulator.netlify.app/)
+
+## Preview
 
 ![Screenshot](screenshot.gif)
 
