@@ -1,6 +1,5 @@
 {
   "name": "particle-simulator",
-  "packageManager": "yarn@3.2.3",
   "source": "src/index.html",
   "scripts": {
     "start": "parcel",
